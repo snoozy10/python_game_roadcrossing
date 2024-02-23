@@ -27,15 +27,13 @@ screen.tracer(0)
 screen.isExit = False
 screen.onclick(exit_screen)
 
-
 player = Player()
-car_factory = CarManager(CAR_MOVE_BLOCK + player.score * CAR_SPEED)
-scoreboard = ScoreBoard(player)
 screen.onkeypress(key="Up", fun=player.move_up)
 screen.onkeypress(key="Down", fun=player.move_down)
 screen.listen()
-car_gap = 0
+car_factory = CarManager(CAR_MOVE_BLOCK + player.score * CAR_SPEED)
 car_factory.create_car_bank(15)
+scoreboard = ScoreBoard(player)
 
 while not screen.isExit:
     time.sleep(SLEEP_TIME)
@@ -48,10 +46,19 @@ while not screen.isExit:
             car_factory.all_cars.remove(car)
             car.goto(car.init_x + SCREEN_WIDTH/4, car.init_y)
             car_factory.all_cars.append(car)
-        if player.distance(car) < CAR_WIDTH/2:
-            screen.isExit = True
+
+        screen.isExit |= player.ycor() <= car.ycor() and player.distance(car) < PIXEL_BLOCK/2 + TURTLE_HEIGHT/2
+        screen.isExit |= player.distance(car) < TURTLE_HEIGHT/2
+        if screen.isExit:
             print("<PTCHT> x.x")
+            car_factory.clear_stamps()
+            player.color("dark red")
+            if player.distance(0, 0) < 40:
+                player.hideturtle()
+            scoreboard.game_over()
+            break
+
     screen.update()
 
-print(len(car_factory.all_cars))
+# print(len(car_factory.all_cars))
 screen.exitonclick()

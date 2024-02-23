@@ -40,3 +40,9 @@ class CarManager:
                                         round(SCREEN_HEIGHT / 2 - 2 * TURTLE_HEIGHT))
             car.goto(car.init_x, new_init_y)
         self.move_block = car_move_block
+
+    def clear_stamps(self):
+        for car in self.all_cars:
+            if car.distance(0, 0) < CAR_WIDTH * 2:
+                # car.reset()
+                car.hideturtle()
