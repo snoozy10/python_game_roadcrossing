@@ -6,7 +6,7 @@ CAR_SPEED = 1
 STRETCH_FACTOR = 2.4
 CAR_WIDTH = PIXEL_BLOCK * STRETCH_FACTOR
 MAX_SPEED = 3 * CAR_MOVE_BLOCK
-CAR_COLORS = ["pink", "yellow", "purple"]
+CAR_COLORS = ["pink", "burlywood", "dark sea green", "purple", "gold", "medium violet red", "white"]
 
 SCREEN_HEIGHT = PIXEL_BLOCK * 24
 SCREEN_WIDTH = PIXEL_BLOCK * 24
@@ -15,8 +15,8 @@ TURTLE_HEIGHT = 35
 
 FONT_SIZE = 16
 
-TURTLE_COLOR = "dark green"
-BG_COLOR = "gray"
+TURTLE_COLOR = "teal"
+BG_COLOR = "light gray"
 SCORE_COLOR = "black"
 
 PLAYER_INIT_Y = -SCREEN_HEIGHT/2 + TURTLE_HEIGHT/2
